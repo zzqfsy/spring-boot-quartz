@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+~ The MIT License (MIT)
+~
+~ Copyright (c) 2014-2016 abel533@gmail.com
+~
+~ Permission is hereby granted, free of charge, to any person obtaining a copy
+~ of this software and associated documentation files (the "Software"), to deal
+~ in the Software without restriction, including without limitation the rights
+~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+~ copies of the Software, and to permit persons to whom the Software is
+~ furnished to do so, subject to the following conditions:
+~
+~ The above copyright notice and this permission notice shall be included in
+~ all copies or substantial portions of the Software.
+~
+~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+~ THE SOFTWARE.
+-->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zzqfsy.service.core.repository.QrtzRecordExecuteMapper">
+  <resultMap type="com.zzqfsy.service.core.domain.QrtzRecordExecute" id="qrtzRecordExecuteMap">
+    <result property="id" column="id"/>
+    <result property="schedName" column="SCHED_NAME"/>
+    <result property="instanceName" column="INSTANCE_NAME"/>
+    <result property="jobName" column="JOB_NAME"/>
+    <result property="jobGroup" column="JOB_GROUP"/>
+    <result property="jobClassName" column="JOB_CLASS_NAME"/>
+    <result property="executeParam" column="execute_param"/>
+    <result property="executeTime" column="execute_time"/>
+    <result property="executeResult" column="execute_result"/>
+    <result property="addTime" column="add_time"/>
+
+  </resultMap>
+
+  <select id="getByPrimaryKey" parameterType="Integer" resultMap="qrtzRecordExecuteMap">
+    SELECT * FROM qrtz_record_execute WHERE id = #{id}
+  </select>
+
+  <insert id="create" parameterType="com.zzqfsy.service.core.domain.QrtzRecordExecute">
+    <selectKey resultType="Integer" order="AFTER" keyProperty="id" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO qrtz_record_execute
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">id,</if>
+      <if test="schedName != null">SCHED_NAME,</if>
+      <if test="instanceName != null">INSTANCE_NAME,</if>
+      <if test="jobName != null">JOB_NAME,</if>
+      <if test="jobGroup != null">JOB_GROUP,</if>
+      <if test="jobClassName != null">JOB_CLASS_NAME,</if>
+      <if test="executeParam != null">execute_param,</if>
+      <if test="executeTime != null">execute_time,</if>
+      <if test="executeResult != null">execute_result,</if>
+      <if test="addTime != null">add_time,</if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">#{id},</if>
+      <if test="schedName != null">#{schedName},</if>
+      <if test="instanceName != null">#{instanceName},</if>
+      <if test="jobName != null">#{jobName},</if>
+      <if test="jobGroup != null">#{jobGroup},</if>
+      <if test="jobClassName != null">#{jobClassName},</if>
+      <if test="executeParam != null">#{executeParam},</if>
+      <if test="executeTime != null">#{executeTime},</if>
+      <if test="executeResult != null">#{executeResult},</if>
+      <if test="addTime != null">#{addTime},</if>
+    </trim>
+  </insert>
+
+  <select id="count" parameterType="map" resultType="Integer">
+    SELECT count(id) FROM qrtz_record_execute WHERE 1 = 1
+    <if test="id != null">
+      AND id = #{id}
+    </if>
+
+  </select>
+
+  <select id="getList" parameterType="map" resultMap="qrtzRecordExecuteMap">
+    SELECT * FROM qrtz_record_execute WHERE 1 = 1
+    <if test="id != null">
+      AND id = #{id}
+    </if>
+  </select>
+</mapper>

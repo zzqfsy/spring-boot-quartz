@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<property name="APP_NAME" value="zzqfsy-task"/>
+	<contextName>${APP_NAME}</contextName>
+	<include resource="org/springframework/boot/logging/logback/base.xml" />
+	<turboFilter class="com.zzqfsy.filter.ThreadLevelFilter"/>
+
+	<springProfile name="test18700">
+		<appender name="STBRollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+			<File>/zzqfsy/test/zzqfsy-task/logs/${APP_NAME}18700.log</File>
+			<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+				<fileNamePattern>/zzqfsy/test/zzqfsy-task/logs/${APP_NAME}18700.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+				<maxFileSize>100MB</maxFileSize>
+				<maxHistory>60</maxHistory>
+				<totalSizeCap>20GB</totalSizeCap>
+			</rollingPolicy>
+			<encoder>
+				<charset>UTF-8</charset>
+				<Pattern>%d{YYYY-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg %n</Pattern>
+			</encoder>
+		</appender>
+	</springProfile>
+
+	<springProfile name="prod18700">
+		<appender name="STBRollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+			<File>/zzqfsy/release/zzqfsy-task/logs/${APP_NAME}18700.log</File>
+			<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+				<fileNamePattern>/zzqfsy/release/zzqfsy-task/logs/${APP_NAME}18700.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+				<maxFileSize>100MB</maxFileSize>
+				<maxHistory>60</maxHistory>
+				<totalSizeCap>20GB</totalSizeCap>
+			</rollingPolicy>
+			<encoder>
+				<charset>UTF-8</charset>
+				<Pattern>%d{YYYY-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg %n</Pattern>
+			</encoder>
+		</appender>
+	</springProfile>
+
+	<springProfile name="prod18701">
+		<appender name="STBRollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+			<File>/zzqfsy/release/zzqfsy-task/logs/${APP_NAME}18701.log</File>
+			<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+				<fileNamePattern>/zzqfsy/release/zzqfsy-task/logs/${APP_NAME}18701.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+				<maxFileSize>100MB</maxFileSize>
+				<maxHistory>60</maxHistory>
+				<totalSizeCap>20GB</totalSizeCap>
+			</rollingPolicy>
+			<encoder>
+				<charset>UTF-8</charset>
+				<Pattern>%d{YYYY-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg %n</Pattern>
+			</encoder>
+		</appender>
+	</springProfile>
+
+
+	<springProfile name="dev">
+		<root level="INFO">
+			<appender-ref ref="CONSOLE" />
+		</root>
+	</springProfile>
+	<springProfile name="test18700">
+		<root level="INFO">
+			<appender-ref ref="STBRollingFileAppender" />
+		</root>
+	</springProfile>
+	<springProfile name="prod18700,prod18701">
+		<root level="WARN">
+			<appender-ref ref="STBRollingFileAppender" />
+		</root>
+	</springProfile>
+</configuration>

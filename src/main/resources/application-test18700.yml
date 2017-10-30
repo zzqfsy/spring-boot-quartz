@@ -1,0 +1,64 @@
+server.port: 18700
+spring:
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password: zzqfsy2017
+    pool:
+      max-active: 8
+      max-idle: 8
+      min-idle: 0
+      max-wait: -1
+master:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/zzqfsy_test?useUnicode=true&autoReconnect=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+    username: zzqfsy_test
+    password: Czzqfsy2017
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    filters: stat
+    max-active: 20
+    min-idle: 2
+    initial-size: 2
+    max-wait: 60000
+    time-between-eviction-runs-millis: 60000
+    min-evictable-idle-time-millis: 300000
+    validation-query: select 1
+    test-while-idle: true
+    test-on-borrow: false
+    test-on-return: false
+    pool-prepared-statements: true
+    max-open-prepared-statements: 20
+quartz:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/zzqfsy_quartz?useUnicode=true&autoReconnect=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+    username: zzqfsy_test
+    password: Czzqfsy2017
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    filters: stat
+    max-active: 20
+    min-idle: 2
+    initial-size: 2
+    max-wait: 60000
+    time-between-eviction-runs-millis: 60000
+    min-evictable-idle-time-millis: 300000
+    validation-query: select 1
+    test-while-idle: true
+    test-on-borrow: false
+    test-on-return: false
+    pool-prepared-statements: true
+    max-open-prepared-statements: 20
+
+#验证用户名、密码
+security:
+  user:
+    name: zzqfsy
+    password: zzqfsyQuart2017
+  basic:
+    enabled: true
+    realm: Please provide your authentication details
+    path: /, /index

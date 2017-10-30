@@ -1,0 +1,31 @@
+spring.profiles.active: dev
+
+#spring.velocity:
+#  properties.input.encoding: UTF-8
+
+#开启shutdown的安全验证
+#endpoints:
+#  shutdown:
+#    enabled: true
+#    sensitive: true
+#    path: /shutdown/taskapp
+
+spring:
+  resources:
+    static-locations: classpath:/static/
+  aop:
+    proxy-target-class: true
+  thymeleaf:
+    cache: false
+    encoding: UTF-8
+    content-type: text/html
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+
+logging:
+  level:
+    jdbc:
+      audit: error
+      resultset: error
+      sqlonly: error
